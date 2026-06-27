@@ -1,5 +1,5 @@
 let boxes = document.querySelectorAll(".but");
-let rreset = document.querySelector("#reset");
+let rreset = querySelector("#reset")
 
 rreset.addEventListener("click", () => {
 
