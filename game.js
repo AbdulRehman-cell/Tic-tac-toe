@@ -21,12 +21,19 @@ rreset.addEventListener("click", () => {
     i = 0;
     statu = false;
     turn0 = true;
-    document.querySelector("h2").innerText = "";
-    document.querySelector("h2").style.visibility = "hidden";
+    let h2 = document.querySelector("h2");
+    if (h2) {
+        h2.innerText = "";
+        h2.style.visibility = "hidden";
+    }
 });
 
 boxes.forEach((but) => {
     but.addEventListener("click", () => {
+        if (statu) return; // Prevent moves after winner
+
+        if (but.innerText !== "") return; // Prevent clicking filled boxes
+
         if (turn0) {
             but.innerText = "O";
             turn0 = false;
@@ -38,17 +45,20 @@ boxes.forEach((but) => {
         but.disabled = true;
         Checkwinner();
         if (i === 9 && statu === false) {
-            document.querySelector("h2").innerText = "DRAW !";
-            document.querySelector("h2").style.visibility = "visible";
+            let h2 = document.querySelector("h2");
+            if (h2) {
+                h2.innerText = "DRAW!";
+                h2.style.visibility = "visible";
+            }
         }
     });
 });
 
 function Checkwinner() {
     for (let pattern of winningPatterns) {
-        let pos1 = boxes[pattern[0]].innerText;
-        let pos2 = boxes[pattern[1]].innerText;
-        let pos3 = boxes[pattern[2]].innerText;
+        let pos1 = boxes[pattern[0]].innerText.trim();
+        let pos2 = boxes[pattern[1]].innerText.trim();
+        let pos3 = boxes[pattern[2]].innerText.trim();
 
         if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
             if (pos1 === pos2 && pos2 === pos3) {
@@ -62,8 +72,11 @@ function Checkwinner() {
 }
 
 function announce(winner) {
-    document.querySelector("h2").innerText = "WINNER : " + winner;
-    document.querySelector("h2").style.visibility = "visible";
+    let h2 = document.querySelector("h2");
+    if (h2) {
+        h2.innerText = "WINNER: " + winner;
+        h2.style.visibility = "visible";
+    }
     for (let box of boxes) {
         box.disabled = true;
     }
