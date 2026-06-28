@@ -1,9 +1,10 @@
-# ❌ Tic Tac Toe Game
-# 📘 Description
+# Tic Tac Toe Game
+
+# Description
 
 A classic Tic Tac Toe game built with simple front-end technologies. It allows two players to take turns and automatically detects wins, draws, and resets.
 
-# 🚀 Features
+# Features
 
 • Two-player mode
 
@@ -13,7 +14,7 @@ A classic Tic Tac Toe game built with simple front-end technologies. It allows t
 
 • Clean, minimal UI
 
-# 🛠️ Tech Stack
+# Tech Stack
 
 • HTML5
 
@@ -21,3 +22,8 @@ A classic Tic Tac Toe game built with simple front-end technologies. It allows t
 
 • JavaScript
 
+## Directory Structure
+README.md
+game.css
+game.js
+index.html
