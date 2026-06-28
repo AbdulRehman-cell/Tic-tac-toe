@@ -1,5 +1,5 @@
-let boxes = document.querySelectorAll(".but");
-let rreset = document.querySelector("#reset");
+const boxes = document.querySelectorAll(".box");
+const reset = document.querySelector("#reset");
 let turn0 = true;
 let i = 0;
 let statu = false;
@@ -13,39 +13,38 @@ const winningPatterns = [
     [2, 4, 6]
 ];
 
-rreset.addEventListener("click", () => {
-    for (let box of boxes) {
+reset.addEventListener("click", () => {
+    boxes.forEach(box => {
         box.innerText = "";
         box.disabled = false;
-    }
+    });
     i = 0;
     statu = false;
     turn0 = true;
-    let h2 = document.querySelector("h2");
+    const h2 = document.querySelector("h2");
     if (h2) {
         h2.innerText = "";
         h2.style.visibility = "hidden";
     }
 });
 
-boxes.forEach((but) => {
-    but.addEventListener("click", () => {
-        if (statu) return; // Prevent moves after winner
-
-        if (but.innerText !== "") return; // Prevent clicking filled boxes
+boxes.forEach(box => {
+    box.addEventListener("click", () => {
+        if (statu) return;
+        if (box.innerText !== "") return;
 
         if (turn0) {
-            but.innerText = "O";
+            box.innerText = "O";
             turn0 = false;
         } else {
-            but.innerText = "X";
+            box.innerText = "X";
             turn0 = true;
         }
         i++;
-        but.disabled = true;
+        box.disabled = true;
         Checkwinner();
         if (i === 9 && statu === false) {
-            let h2 = document.querySelector("h2");
+            const h2 = document.querySelector("h2");
             if (h2) {
                 h2.innerText = "DRAW!";
                 h2.style.visibility = "visible";
@@ -55,15 +54,15 @@ boxes.forEach((but) => {
 });
 
 function Checkwinner() {
-    for (let pattern of winningPatterns) {
-        let pos1 = boxes[pattern[0]].innerText.trim();
-        let pos2 = boxes[pattern[1]].innerText.trim();
-        let pos3 = boxes[pattern[2]].innerText.trim();
+    for (const pattern of winningPatterns) {
+        const pos1 = boxes[pattern[0]].innerText.trim();
+        const pos2 = boxes[pattern[1]].innerText.trim();
+        const pos3 = boxes[pattern[2]].innerText.trim();
 
         if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
             if (pos1 === pos2 && pos2 === pos3) {
                 statu = true;
-                let winner = pos1;
+                const winner = pos1;
                 announce(winner);
                 return;
             }
@@ -72,12 +71,12 @@ function Checkwinner() {
 }
 
 function announce(winner) {
-    let h2 = document.querySelector("h2");
+    const h2 = document.querySelector("h2");
     if (h2) {
         h2.innerText = "WINNER: " + winner;
         h2.style.visibility = "visible";
     }
-    for (let box of boxes) {
+    boxes.forEach(box => {
         box.disabled = true;
-    }
+    });
 }

@@ -27,9 +27,3 @@ README.md
 game.css
 game.js
 index.html
-
-## Directory Structure
-README.md
-game.css
-game.js
-index.html
