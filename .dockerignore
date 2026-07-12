@@ -1,13 +1,8 @@
+# Ignore the node_modules directory
 node_modules
-npm-debug.log
-Dockerfile
-docker-compose.yml
-.git
-.gitignore
-.env
-*.md
-*.yml
-*.yaml
+# Ignore build files (if any were to be created)
 build
-public
-dist
+# Ignore local configurations
+*.local
+# Ignore `.env` files
+.env
