@@ -1,0 +1,30 @@
+name: Deploy Static Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t my-static-site:1.0 .
+
+      - name: Run health check
+        run: |
+          docker run -d --name my_static_site_container my-static-site:1.0
+          sleep 10
+          curl -f http://localhost:80/ || exit 1
+
+      - name: Push Docker image to Render
+        run: |
+          # Assuming Docker credentails are handled in Render
+          docker tag my-static-site:1.0 YOUR_RENDER_DOCKER_URL/my-static-site:1.0
+          docker push YOUR_RENDER_DOCKER_URL/my-static-site:1.0

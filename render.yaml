@@ -1,0 +1,20 @@
+version: 1
+services:
+  web:
+    type: web
+    env: docker
+    docker:
+      build:
+        dockerfile: Dockerfile
+        context: .
+    healthCheck:
+      path: /
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    plans:
+      - plan: "Starter"
+        region: "us"
+    envVars:
+      # Add your environment variables here
+      # Example: MY_ENV_VAR: "value"
