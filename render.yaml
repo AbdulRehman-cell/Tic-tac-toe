@@ -1,20 +1,13 @@
-version: 1
 services:
   web:
-    type: web
+    type: web_service
     env: docker
-    docker:
-      build:
-        dockerfile: Dockerfile
-        context: .
-    healthCheck:
+    dockerfile_path: Dockerfile
+    build_command: docker build -t my-app:1.0 .
+    start_command: nginx -g 'daemon off;'
+    health_check:
       path: /
       interval: 30s
-      timeout: 10s
-      retries: 3
-    plans:
-      - plan: "Starter"
-        region: "us"
-    envVars:
-      # Add your environment variables here
-      # Example: MY_ENV_VAR: "value"
+      timeout: 5s
+      healthy_threshold: 3
+      unhealthy_threshold: 3

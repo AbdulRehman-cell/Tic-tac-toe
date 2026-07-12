@@ -1,21 +1,20 @@
 # Deployment Guide
 
-Follow these steps to deploy the application in under 5 minutes:
+Follow the steps below to deploy this application on Render:
 
-1. Clone the repository:
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
+   git clone <your-repo-url>
+   cd <your-repo-name>
    ```
 
-2. Build the Docker image:
+2. **Deploy the App**
+   - Make sure you are authenticated with Render via the command line.
+   - Run the following commands to deploy your app:
    ```bash
-   docker build -t my-static-site:1.0 .
+   docker build -t my-app:1.0 .
+   render deploy my-app
    ```
 
-3. Run the application with Docker:
-   ```bash
-   docker run -d -p 80:80 my-static-site:1.0
-   ```
-
-4. Access the application by going to `http://localhost` in your web browser.
+3. **Access the App**
+   - Once deployed, visit your app at `https://<your-render-app-name>.onrender.com`

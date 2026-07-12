@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -7,8 +7,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    restart: always
     healthcheck:
-      test: "exit 0"
+      test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 30s
-      timeout: 10s
+      timeout: 5s
       retries: 3

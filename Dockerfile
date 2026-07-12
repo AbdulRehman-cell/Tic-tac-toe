@@ -1,17 +1,16 @@
-# Start from a lightweight Nginx image
-FROM nginx:1.23.2-alpine as build
+# Use an official Nginx image as a base
+FROM nginx:1.23.4-alpine AS base
 
-# Copy static files
-COPY . /usr/share/nginx/html
+# Remove the default server definition
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Use a minimal image to reduce size
-FROM nginx:1.23.2-alpine
+# Copy the nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d
 
-# Copy built files from the previous stage
-COPY --from=build /usr/share/nginx/html /usr/share/nginx/html
+# Copy web files to the Nginx HTML directory
+COPY index.html /usr/share/nginx/html/
+COPY game.css /usr/share/nginx/html/
+COPY game.js /usr/share/nginx/html/
 
-# Health check for the running Nginx server
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 CMD curl -f http://localhost/ || exit 1
-
-# Expose the server port
-EXPOSE 80
+# Final stage
+FROM base

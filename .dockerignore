@@ -1,11 +1,13 @@
-# Ignore the Docker build context files
 node_modules
 npm-debug.log
 Dockerfile
 docker-compose.yml
-README.md
-DEPLOY.md
 .git
 .gitignore
-.cache
-.vscode
+.env
+*.md
+*.yml
+*.yaml
+build
+public
+dist
