@@ -1,25 +1,21 @@
-# Deployment Instructions for the Static HTML/CSS/JS Site
+# Deployment Guide
 
-## Steps to Deploy:
+Follow these steps to deploy the application in under 5 minutes:
 
-1. Ensure you have Docker installed on your machine. You can download it from [Docker's official site](https://www.docker.com/products/docker-desktop).
-
-2. Clone the repository to your local machine:
+1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/your-repo.git
    cd your-repo
    ```
 
-3. Build the Docker image:
+2. Build the Docker image:
    ```bash
-   docker-compose build
+   docker build -t my-static-site:1.0 .
    ```
 
-4. Run your application using Docker Compose:
+3. Run the application with Docker:
    ```bash
-   docker-compose up
+   docker run -d -p 80:80 my-static-site:1.0
    ```
 
-5. (Optional) If you want to deploy to Render, ensure you have set up your Render account and the RENDER_API_KEY in your GitHub Secrets. The deployment will happen automatically when you push to the main branch.
-
-6. Visit `http://localhost` in your browser to see your site in action!
+4. Access the application by going to `http://localhost` in your web browser.

@@ -1,14 +1,17 @@
-# Use a multi-stage build to keep the final image lightweight
-FROM nginx:1.23.4 AS build
+# Start from a lightweight Nginx image
+FROM nginx:1.23.2-alpine as build
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# Copy static files
+COPY . /usr/share/nginx/html
 
-# Copy static files to the Nginx html directory
-COPY index.html game.css game.js ./
+# Use a minimal image to reduce size
+FROM nginx:1.23.2-alpine
 
-# Expose the default Nginx port
+# Copy built files from the previous stage
+COPY --from=build /usr/share/nginx/html /usr/share/nginx/html
+
+# Health check for the running Nginx server
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 CMD curl -f http://localhost/ || exit 1
+
+# Expose the server port
 EXPOSE 80
-
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
