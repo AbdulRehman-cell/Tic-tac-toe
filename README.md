@@ -1,23 +1,22 @@
-# ❌ Tic Tac Toe Game
-# 📘 Description
+# Tic Tac Toe Game
+## Description
 
 A classic Tic Tac Toe game built with simple front-end technologies. It allows two players to take turns and automatically detects wins, draws, and resets.
 
-# 🚀 Features
+## Features
 
-• Two-player mode
+- Two-player mode
 
-• Win/draw detection logic
+- Win/draw detection logic
 
-• Reset and new game options
+- Reset and new game options
 
-• Clean, minimal UI
+- Clean, minimal UI
 
-# 🛠️ Tech Stack
+## Tech Stack
 
-• HTML5
+- HTML5
 
-• CSS3
+- CSS3
 
-• JavaScript
-
+- JavaScript

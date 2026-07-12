@@ -1,27 +1,17 @@
+//Fixing the errors in the game.js file
+
 let boxes = document.querySelectorAll(".but");
-let rreset = querySelector("#reset")
+let rreset = document.querySelector("#reset"); // Fixed typo for `querySelector`
 
 rreset.addEventListener("click", () => {
-
-    for (box of boxes) {
-
+    for (let box of boxes) { // Added `let` to declare `box`
         box.innerText = "";
         box.disabled = false;
-        i = 0;
-        statu = false;
-
-
     }
-
+    i = 0;
+    statu = false;
     document.querySelector("h2").innerText = "";
-
-
-
-
-
-
 });
-
 
 let turn0 = true;
 
@@ -33,30 +23,28 @@ const winningPatterns = [
     [0, 4, 8],
     [2, 4, 6]
 ];
+
 let i = 0;
 let statu = false;
+
 boxes.forEach((but) => {
     but.addEventListener("click", () => {
         if (turn0 === true) {
             but.innerText = "O";
             turn0 = false;
-            i++;
         } else {
             but.innerText = "X";
             turn0 = true;
-            i++;
         }
+        i++;
         but.disabled = true;
         Checkwinner();
         if (i === 9 && statu === false) {
             document.querySelector("h2").innerText = "DRAW !";
-            document.querySelector("h2").style.display = "visible";
+            document.querySelector("h2").style.visibility = "visible"; // Changed to `visibility`
         }
-
     });
 });
-
-
 
 const Checkwinner = () => {
     for (let pattern of winningPatterns) {
@@ -64,32 +52,21 @@ const Checkwinner = () => {
         let pos2 = boxes[pattern[1]].innerText;
         let pos3 = boxes[pattern[2]].innerText;
 
-
         if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
             if (pos1 === pos2 && pos2 === pos3) {
                 statu = true;
                 let winner = pos1;
                 announce(winner);
                 break;
-
             }
-
-
         }
     }
-
 };
 
 let announce = (winner) => {
-
     document.querySelector("h2").innerText = "WINNER : " + winner;
-    document.querySelector("h2").style.visibility = "visible";
+    document.querySelector("h2").style.visibility = "visible"; // Ensured visibility is set correctly
     for (let box of boxes) {
-
         box.disabled = true;
-
     }
-
-
-
 }
