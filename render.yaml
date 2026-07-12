@@ -1,0 +1,10 @@
+```yaml
+services:
+  - type: web
+    name: your-app-name
+    env: docker
+    dockerfilePath: ./Dockerfile
+    buildCommand: npm run build
+    healthCheckPath: /
+    autoDeploy: true
+```
