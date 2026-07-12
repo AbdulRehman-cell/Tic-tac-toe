@@ -1,31 +1,14 @@
-# Use Node.js as the base image for building the application
-FROM node:16 AS builder
+# Use a multi-stage build to keep the final image lightweight
+FROM nginx:1.23.4 AS build
 
-# Set the working directory in the container
-WORKDIR /app
+# Set working directory
+WORKDIR /usr/share/nginx/html
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy static files to the Nginx html directory
+COPY index.html game.css game.js ./
 
-# Install app dependencies
-RUN npm install --production
-
-# Copy the source code
-COPY . .
-
-# Build the application
-RUN npm run build
-
-# Second stage: create the production image
-FROM nginx:1.23
-
-# Copy the built application from the builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Expose port 80
+# Expose the default Nginx port
 EXPOSE 80
 
-# Health check to ensure the app is running
-HEALTHCHECK CMD curl --fail http://localhost/ || exit 1
-
+# Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
