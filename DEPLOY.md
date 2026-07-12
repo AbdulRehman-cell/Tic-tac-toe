@@ -1,30 +1,32 @@
-```markdown
-# Deployment Guide for Your Application
+# Quick Deployment Guide
 
-Follow the steps below to deploy your application to Render:
+Follow these steps to deploy the application in under 5 minutes:
 
-1. **Clone the repository** (if you haven't done this already):
-   ```
-   git clone https://github.com/yourusername/your-repository.git
-   cd your-repository
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/yourrepository.git
+   cd yourrepository
    ```
 
-2. **Setup your environment variables** by creating a `.env` file based on the `.env.example`:
-   ```
+2. **Create a `.env` file**:
+   Copy the `.env.example` to `.env` and add your configuration parameters:
+   ```bash
    cp .env.example .env
-   # Edit .env to add your own configurations
    ```
 
-3. **Deploy to Render** using the commands below:
-   - Build the Docker image:
-     ```
-     docker build -t your-app-name .
-     ```
+3. **Build and start the application**:
+   Using Docker Compose, run the following command:
+   ```bash
+   docker-compose up --build
+   ```
 
-   - Push to Render (ensure you have the Render CLI installed):
-     ```
-     render deploy your-app-name
-     ```
+4. **Check the application health** (Optional):
+   Make sure the application is running by checking the health:
+   ```bash
+   docker ps  # check if the containers are up
+   ```
+   
+5. **Access the application**:
+   Navigate to `http://localhost` in your web browser.
 
-   - Confirm the deployment in your Render dashboard or via the Render API.
-```
+You are now running the app in a Docker container!

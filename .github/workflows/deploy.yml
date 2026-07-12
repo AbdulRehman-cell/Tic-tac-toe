@@ -1,5 +1,4 @@
-```yaml
-name: Deploy to Render
+name: CI/CD Pipeline
 
 on:
   push:
@@ -9,28 +8,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.12.0'
-      
+          node-version: '16'
+
       - name: Install dependencies
         run: npm install
-      
-      - name: Build the project
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build application
         run: npm run build
-      
+
       - name: Build Docker image
-        run: docker build -t your-app-name .
-      
-      - name: Deploy to Render
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-        run: curl -X POST https://api.render.com/deploy/svc_your_service_id \
-             -H "Content-Type: application/json" \
-             -H "Authorization: Bearer $RENDER_API_KEY"
-```
+        run: docker build -t my-app .
+
+      - name: Push to Render
+        run: |
+          curl -X POST --data '{"branch":"main"}' https://api.render.com/deploy/svc_your_service_id \
+          -H "Authorization: Bearer your_api_key" \
+          -H "Content-Type: application/json"

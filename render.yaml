@@ -1,10 +1,9 @@
-```yaml
 services:
   - type: web
-    name: your-app-name
+    name: my-app
     env: docker
-    dockerfilePath: ./Dockerfile
-    buildCommand: npm run build
+    plan: free
+    buildCommand: 'docker build -t my-app .'
+    startCommand: 'docker run -p 80:80 my-app'
     healthCheckPath: /
     autoDeploy: true
-```

@@ -1,6 +1,7 @@
-```plaintext
 node_modules
 npm-debug.log
+Dockerfile
+docker-compose.yml
 build
-.DS_Store
-```
+.git
+.env
