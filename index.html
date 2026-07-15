@@ -1,45 +1,44 @@
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe | Dark Mode</title>
     <meta name="google-site-verification" content="9WuFCNu241HXanWfoEJ-3VqLoAIy3Jo40cJ9QKKfGZE" />
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Game Styles -->
+    <link rel="stylesheet" href="game.css">
 </head>
-<link rel="stylesheet" href="game.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-</link>
-
 <body>
-
-    <h1>TIC-TAC-TOE </h1>
-    <h2></h2>
-
-    <div class="division">
-
-        <div id="b1"><button class="but"></button></div>
-        <div id="b2"><button class="but"></button></div>
-        <div id="b3"><button class="but"></button></div>
-        <div id="b4"><button class="but"></button></div>
-        <div id="b5"><button class="but"></button></div>
-        <div id="b6"><button class="but"></button></div>
-        <div id="b7"><button class="but"></button></div>
-        <div id="b8"><button class="but"></button></div>
-        <div id="b9"><button class="but"></button></div>
-    </div>
-
-    <button id="reset">RESET</button>
-
-
-
-
+    <header>
+        <nav style="display: flex; justify-content: center; align-items: center; margin-bottom: 18px;">
+            <a href="index.html" style="text-decoration: none; color: #8f8fff; font-size: 1rem; padding: 0.5rem 1.1rem;">
+                <i class="fa-solid fa-gamepad"></i> Home
+            </a>
+        </nav>
+    </header>
+    <main>
+        <h1>TIC-TAC-TOE</h1>
+        <h2 id="status"></h2>
+        <div class="division">
+            <div id="b1"><button class="but"></button></div>
+            <div id="b2"><button class="but"></button></div>
+            <div id="b3"><button class="but"></button></div>
+            <div id="b4"><button class="but"></button></div>
+            <div id="b5"><button class="but"></button></div>
+            <div id="b6"><button class="but"></button></div>
+            <div id="b7"><button class="but"></button></div>
+            <div id="b8"><button class="but"></button></div>
+            <div id="b9"><button class="but"></button></div>
+        </div>
+        <button id="reset">RESET</button>
+    </main>
+    <footer style="color: #b0b3bd; text-align: center; margin-top: 32px; font-size: 0.92rem;">
+        <span>Designed with <i class="fa-solid fa-moon"></i> by Tic-Tac-Toe Team</span>
+    </footer>
+    <script src="game.js"></script>
 </body>
-<script src="game.js"></script>
-
-   
-
-
 </html>
