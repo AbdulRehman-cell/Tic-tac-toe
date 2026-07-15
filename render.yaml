@@ -1,0 +1,15 @@
+version: 1
+services:
+  web:
+    type: web
+    name: your-app-name
+    env: docker
+    buildCommand: |
+      docker build -t your-app-name .
+    startCommand: |
+      docker run -p 80:80 your-app-name
+    healthCheck:
+      path: /
+      interval: 15s
+      timeout: 5s
+      retries: 3
